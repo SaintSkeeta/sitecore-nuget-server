@@ -1,0 +1,210 @@
+<project>
+  <Metadata>
+    <metadata>
+      <PackageName>Nuget Server for Sitecore</PackageName>
+      <Author>Adam Conn</Author>
+      <Version>1.0</Version>
+      <Revision />
+      <License />
+      <Comment />
+      <Attributes />
+      <Readme>    Nuget Server for Sitecore 1.0 rev. 150220
+-------------------------------------------------------------
+Date: 20-Feb-2015
+-------------------------------------------------------------
+This package installs a Nuget server on your Sitecore server.
+It allows Nuget packages to be configured using a Sitecore
+config file.
+
+-------------------------------------------------------------
+*** PRE-INSTALLATION STEPS ***
+Installation WILL FAIL if you do not follow these steps!
+
+Make the following changes to web.config:
+ 
+ 1. Add the following to configuration &gt; system.serviceModel
+
+&lt;serviceHostingEnvironment aspNetCompatibilityEnabled="true"/&gt;
+
+-------------------------------------------------------------
+*** POST-INSTALLATION STEPS ***
+Installation WILL FAIL if you do not follow these steps!
+
+Make the following changes to web.config:
+
+ 1. Add the following to configuration &gt; configSections
+    &lt;sectionGroup name="elmah"&gt;
+      &lt;section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah"/&gt;
+      &lt;section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah"/&gt;
+      &lt;section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah"/&gt;
+      &lt;section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah"/&gt;
+    &lt;/sectionGroup&gt;
+
+  2. Add the following to configuration &gt; appSettings
+    &lt;add key="requireApiKey" value="true"/&gt;
+    &lt;add key="apiKey" value=""/&gt;
+    &lt;add key="packagesPath" value=""/&gt;
+    &lt;add key="allowOverrideExistingPackageOnPush" value="true"/&gt;
+    &lt;add key="enableDelisting" value="false"/&gt;
+    &lt;add key="enableFrameworkFiltering" value="false"/&gt;
+
+  3. Add the following to configuration &gt; system.webServer &gt; modules
+      &lt;add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler"/&gt;
+      &lt;add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler"/&gt;
+      &lt;add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler"/&gt;
+
+  4. Add the following to configuration &gt; system.webServer
+    &lt;staticContent&gt;
+      &lt;mimeMap fileExtension=".nupkg" mimeType="application/zip"/&gt;
+    &lt;/staticContent&gt;
+
+  5. Add the following to configuration &gt; system.web &gt; httpModules
+      &lt;add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/&gt;
+      &lt;add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/&gt;
+      &lt;add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/&gt;
+
+  6. Add the following to configuration
+  &lt;elmah&gt;
+    &lt;security allowRemoteAccess="false"/&gt;
+    &lt;errorLog type="Elmah.XmlFileErrorLog, Elmah" logPath="~/App_Data"/&gt;
+  &lt;/elmah&gt;
+  &lt;location path="elmah.axd" inheritInChildApplications="false"&gt;
+    &lt;system.web&gt;
+      &lt;httpHandlers&gt;
+        &lt;add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah"/&gt;
+      &lt;/httpHandlers&gt;
+    &lt;/system.web&gt;
+    &lt;system.webServer&gt;
+      &lt;handlers&gt;
+        &lt;add name="ELMAH" verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" preCondition="integratedMode"/&gt;
+      &lt;/handlers&gt;
+    &lt;/system.webServer&gt;
+  &lt;/location&gt;
+
+-------------------------------------------------------------
+Nuget Server for Sitecore 1.0 runs on:
+-  Sitecore XP 8.0
+
+*** NOTE ***
+This module should run on any version of Sitecore that meets 
+the requirements for the Nuget.Server package. For more 
+information see https://www.nuget.org/packages/NuGet.Server
+
+-------------------------------------------------------------
+Nuget Server for Sitecore 1.0 has been tested on:
+-  Sitecore XP 8.0
+-------------------------------------------------------------
+Sitecore® is a registered trademark. All other brand and
+product names are the property of their respective holders.
+The contents of this document are the property of Sitecore.
+Copyright © 2001-2015 Sitecore. All rights reserved.
+</Readme>
+      <Publisher />
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <xfiles>
+      <Entries>
+        <x-item>/bin/Elmah.dll</x-item>
+        <x-item>/bin/Microsoft.Web.XmlTransform.dll</x-item>
+        <x-item>/bin/Ninject.dll</x-item>
+        <x-item>/bin/NuGet.Core.dll</x-item>
+        <x-item>/bin/NuGet.Server.dll</x-item>
+        <x-item>/bin/RouteMagic.dll</x-item>
+        <x-item>/bin/WebActivatorEx.dll</x-item>
+        <x-item>/bin/Sitecore.Strategy.Nuget.dll</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>assemblies</Name>
+    </xfiles>
+    <xfiles>
+      <Entries>
+        <x-item>/App_Config/Include/Sitecore.Strategy.Nuget.config</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>config files</Name>
+    </xfiles>
+    <xfiles>
+      <Entries>
+        <x-item>/DataServices/Packages.svc</x-item>
+        <x-item>/DataServices/</x-item>
+        <x-item>/DataServices/Packages.svc</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms />
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>DataServices</Name>
+    </xfiles>
+    <xfiles>
+      <Entries>
+        <x-item>/Packages/</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Packages</Name>
+    </xfiles>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>
