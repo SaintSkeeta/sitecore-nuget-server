@@ -16,7 +16,9 @@ These instructions use a PowerShell script to modify `web.config`. If you don't 
 *NOTE: While these scripts have been tested and work just fine, they may be some of the ugliest PowerShell scripts ever written.*
 
 **Step 1.** Run the [before package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/NuGet%20Server%20for%20Sitecore%20-%20before%20package.ps1) PowerShell script
+
 **Step 2.** Install the [Sitecore installation package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/Nuget%20Server%20for%20Sitecore-1.0.zip)
+
 **Step 3.** Run the [after package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/NuGet%20Server%20for%20Sitecore%20-%20after%20package.ps1) PowerShell script
 
 ### <a name="installation-manual">Installation instructions (manual)</a>
@@ -27,6 +29,7 @@ These instructions use a PowerShell script to modify `web.config`. If you don't 
 ```
 
 **Step 2.** Install the [Sitecore installation package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/Nuget%20Server%20for%20Sitecore-1.0.zip)
+
 **Step 3.** Add the following to `configuration > configSections`
 ```xml
     <sectionGroup name="elmah">
