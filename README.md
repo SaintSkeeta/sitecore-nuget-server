@@ -7,9 +7,7 @@ Sitecore module that adds a NuGet server to your Sitecore server. It also dynami
 * [NuGet Package Configuration](#nugetconfig)
 
 ### <a name="demo">Demo video</a>
-This video shows how to configure Visual Studio to use NuGet Server for Sitecore and how to add references to NuGet packages hosted on NuGet Server for Sitecore.
-
-<iframe width="420" height="315" src="https://www.youtube.com/embed/vgehATYyvYw" frameborder="0" allowfullscreen></iframe>
+[This video](https://www.youtube.com/watch?v=vgehATYyvYw) shows how to configure Visual Studio to use NuGet Server for Sitecore and how to add references to NuGet packages hosted on NuGet Server for Sitecore.
 
 ### <a name="installation">Installation instructions</a>
 **Step 1.** Add the following to `configuration > system.serviceModel`
