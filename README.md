@@ -1,7 +1,17 @@
-# Nuget Server for Sitecore
-Sitecore module that adds a Nuget server to your Sitecore server. It also dynamically generates Nuget packages for Sitecore assemblies.
+# NuGet Server for Sitecore
+Sitecore module that adds a NuGet server to your Sitecore server. It also dynamically generates Nuget packages for Sitecore assemblies.
 
-### Installation instructions
+* [Demo video](#demo)
+* [Installation instructions](#installation)
+* [Visual Studio Configuration](#vsconfig)
+* [NuGet Package Configuration](#nugetconfig)
+
+### <a name="demo">Demo video</a>
+This video shows how to configure Visual Studio to use NuGet Server for Sitecore and how to add references to NuGet packages hosted on NuGet Server for Sitecore.
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/vgehATYyvYw" frameborder="0" allowfullscreen></iframe>
+
+### <a name="installation">Installation instructions</a>
 **Step 1.** Add the following to `configuration > system.serviceModel`
 ```xml
 <serviceHostingEnvironment aspNetCompatibilityEnabled="true"/>
@@ -70,8 +80,14 @@ Sitecore module that adds a Nuget server to your Sitecore server. It also dynami
   </location>
 ```
 
-### Configuration
-Nuget Server for Sitecore dynamically generates Nuget packages based on configuration settings. The module includes 3 packages. These packages are defined in [Sitecore.Strategy.Nuget.config](https://github.com/adamconn/sitecore-nuget-server/raw/master/source/Sitecore.Strategy.Nuget/App_Config/Include/Sitecore.Strategy.Nuget.config).
+### <a name="vsconfig">Visual Studio Configuration</a>
+After you have installed the module on your Sitecore server you must add your Sitecore server as a package source in Visual Studio.
+
+1. In Visual Studio open `Tools > Options > NuGet Package Manager > Package Sources`
+2. Add a new source. For the URL use `http://[yourhost]/nuget`
+
+### <a name="nugetconfig">NuGet Package Configuration</a>
+NuGet Server for Sitecore dynamically generates NuGet packages based on configuration settings. The module includes 3 packages. These packages are defined in [Sitecore.Strategy.Nuget.config](https://github.com/adamconn/sitecore-nuget-server/raw/master/source/Sitecore.Strategy.Nuget/App_Config/Include/Sitecore.Strategy.Nuget.config).
 
 It is probably easier for you to understand the configuration by looking at the file, but here's an overview of what you're configuring:
 * **Package** - a package has an ID. This is a string value that uniquely identifies the package so it can be retrieved from the Nuget server and so other packages can identify a package as a dependency.  
