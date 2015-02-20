@@ -8,12 +8,12 @@
       <License />
       <Comment />
       <Attributes />
-      <Readme>    Nuget Server for Sitecore 1.0 rev. 150220
+      <Readme>    NuGet Server for Sitecore 1.0 rev. 150220
 -------------------------------------------------------------
 Date: 20-Feb-2015
 -------------------------------------------------------------
-This package installs a Nuget server on your Sitecore server.
-It allows Nuget packages to be configured using a Sitecore
+This package installs a NuGet server on your Sitecore server.
+It allows NuGet packages to be configured using a Sitecore
 config file.
 
 -------------------------------------------------------------
@@ -82,16 +82,16 @@ Make the following changes to web.config:
   &lt;/location&gt;
 
 -------------------------------------------------------------
-Nuget Server for Sitecore 1.0 runs on:
+NuGet Server for Sitecore 1.0 runs on:
 -  Sitecore XP 8.0
 
 *** NOTE ***
 This module should run on any version of Sitecore that meets 
-the requirements for the Nuget.Server package. For more 
+the requirements for the NuGet.Server package. For more 
 information see https://www.nuget.org/packages/NuGet.Server
 
 -------------------------------------------------------------
-Nuget Server for Sitecore 1.0 has been tested on:
+NuGet Server for Sitecore 1.0 has been tested on:
 -  Sitecore XP 8.0
 -------------------------------------------------------------
 Sitecore® is a registered trademark. All other brand and

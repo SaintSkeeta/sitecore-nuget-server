@@ -2,21 +2,31 @@
 Sitecore module that adds a NuGet server to your Sitecore server. It also dynamically generates Nuget packages for Sitecore assemblies.
 
 * [Demo video](#demo)
-* [Installation instructions](#installation)
-* [Visual Studio Configuration](#vsconfig)
-* [NuGet Package Configuration](#nugetconfig)
+* [Installation instructions (scripted)](#installation-scripted)
+* [Installation instructions (manual)](#installation-manual)
+* [Visual Studio configuration](#vsconfig)
+* [NuGet package configuration](#nugetconfig)
 
 ### <a name="demo">Demo video</a>
 [This video](https://www.youtube.com/watch?v=vgehATYyvYw) shows how to configure Visual Studio to use NuGet Server for Sitecore and how to add references to NuGet packages hosted on NuGet Server for Sitecore.
 
-### <a name="installation">Installation instructions</a>
-**Step 1.** Add the following to `configuration > system.serviceModel`
+### <a name="installation-scripted">Installation instructions (scripted)</a>
+These instructions use a PowerShell script to modify `web.config`. If you don't feel comfortable letting a script modify this file you should follow the [manual installation instructions](#installation-manual).
+
+*NOTE: While these scripts have been tested and work just fine, they may be some of the ugliest PowerShell scripts ever written.*
+
+**Step 1.** Run the [before package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/NuGet%20Server%20for%20Sitecore%20-%20before%20package.ps1) PowerShell script
+**Step 2.** Install the [Sitecore installation package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/Nuget%20Server%20for%20Sitecore-1.0.zip)
+**Step 3.** Run the [after package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/NuGet%20Server%20for%20Sitecore%20-%20after%20package.ps1) PowerShell script
+
+### <a name="installation-manual">Installation instructions (manual)</a>
+**Step 1.** Add the following to `configuration > system.serviceModel` 
+
 ```xml
 <serviceHostingEnvironment aspNetCompatibilityEnabled="true"/>
 ```
 
 **Step 2.** Install the [Sitecore installation package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/Nuget%20Server%20for%20Sitecore-1.0.zip)
-
 **Step 3.** Add the following to `configuration > configSections`
 ```xml
     <sectionGroup name="elmah">
@@ -78,13 +88,13 @@ Sitecore module that adds a NuGet server to your Sitecore server. It also dynami
   </location>
 ```
 
-### <a name="vsconfig">Visual Studio Configuration</a>
+### <a name="vsconfig">Visual Studio configuration</a>
 After you have installed the module on your Sitecore server you must add your Sitecore server as a package source in Visual Studio.
 
 1. In Visual Studio open `Tools > Options > NuGet Package Manager > Package Sources`
 2. Add a new source. For the URL use `http://[yourhost]/nuget`
 
-### <a name="nugetconfig">NuGet Package Configuration</a>
+### <a name="nugetconfig">NuGet package configuration</a>
 NuGet Server for Sitecore dynamically generates NuGet packages based on configuration settings. The module includes 3 packages. These packages are defined in [Sitecore.Strategy.Nuget.config](https://github.com/adamconn/sitecore-nuget-server/raw/master/source/Sitecore.Strategy.Nuget/App_Config/Include/Sitecore.Strategy.Nuget.config).
 
 It is probably easier for you to understand the configuration by looking at the file, but here's an overview of what you're configuring:
