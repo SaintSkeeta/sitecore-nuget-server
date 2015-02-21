@@ -19,7 +19,7 @@ else
 
     $configSections = $config.configSections
 
-    $elmahSection = $configSections.SelectSingleNode("sectionGroup[name='elmah']")
+    $elmahSection = $configSections.SelectSingleNode("sectionGroup[@name='elmah']")
 
     if ($elmahSection -eq $null)
     {
@@ -30,7 +30,7 @@ else
         $configSections.AppendChild($elmahSection) | Out-Null
     }
 
-    $elmahNode = $elmahSection.SelectSingleNode("section[name='security']")
+    $elmahNode = $elmahSection.SelectSingleNode("section[@name='security']")
     if ($elmahNode -eq $null)
     {
         $elmahAttr1 = $xml.CreateAttribute("name")
@@ -45,11 +45,56 @@ else
         $elmahNode.Attributes.Append($elmahAttr3) | Out-Null
         $elmahSection.AppendChild($elmahNode) | Out-Null
     }
+    $elmahNode = $elmahSection.SelectSingleNode("section[@name='errorLog']")
+    if ($elmahNode -eq $null)
+    {
+        $elmahAttr1 = $xml.CreateAttribute("name")
+        $elmahAttr1.Value = "errorLog"
+        $elmahAttr2 = $xml.CreateAttribute("requirePermission")
+        $elmahAttr2.Value = "false"
+        $elmahAttr3 = $xml.CreateAttribute("type")
+        $elmahAttr3.Value = "Elmah.ErrorLogSectionHandler, Elmah"
+        $elmahNode = $xml.CreateElement("section")
+        $elmahNode.Attributes.Append($elmahAttr1) | Out-Null
+        $elmahNode.Attributes.Append($elmahAttr2) | Out-Null
+        $elmahNode.Attributes.Append($elmahAttr3) | Out-Null
+        $elmahSection.AppendChild($elmahNode) | Out-Null
+    }
+    $elmahNode = $elmahSection.SelectSingleNode("section[@name='errorMail']")
+    if ($elmahNode -eq $null)
+    {
+        $elmahAttr1 = $xml.CreateAttribute("name")
+        $elmahAttr1.Value = "errorMail"
+        $elmahAttr2 = $xml.CreateAttribute("requirePermission")
+        $elmahAttr2.Value = "false"
+        $elmahAttr3 = $xml.CreateAttribute("type")
+        $elmahAttr3.Value = "Elmah.ErrorMailSectionHandler, Elmah"
+        $elmahNode = $xml.CreateElement("section")
+        $elmahNode.Attributes.Append($elmahAttr1) | Out-Null
+        $elmahNode.Attributes.Append($elmahAttr2) | Out-Null
+        $elmahNode.Attributes.Append($elmahAttr3) | Out-Null
+        $elmahSection.AppendChild($elmahNode) | Out-Null
+    }
+    $elmahNode = $elmahSection.SelectSingleNode("section[@name='errorFilter']")
+    if ($elmahNode -eq $null)
+    {
+        $elmahAttr1 = $xml.CreateAttribute("name")
+        $elmahAttr1.Value = "errorFilter"
+        $elmahAttr2 = $xml.CreateAttribute("requirePermission")
+        $elmahAttr2.Value = "false"
+        $elmahAttr3 = $xml.CreateAttribute("type")
+        $elmahAttr3.Value = "Elmah.ErrorFilterSectionHandler, Elmah"
+        $elmahNode = $xml.CreateElement("section")
+        $elmahNode.Attributes.Append($elmahAttr1) | Out-Null
+        $elmahNode.Attributes.Append($elmahAttr2) | Out-Null
+        $elmahNode.Attributes.Append($elmahAttr3) | Out-Null
+        $elmahSection.AppendChild($elmahNode) | Out-Null
+    }
 
     #################################################
     
     $appSettingsSection = $config.appSettings
-    $appSetting = $appSettingsSection.SelectSingleNode("add[key='requireApiKey']")
+    $appSetting = $appSettingsSection.SelectSingleNode("add[@key='requireApiKey']")
     if ($appSetting -eq $null)
     {
         $appSettingAttr1 = $xml.CreateAttribute("key")
@@ -61,7 +106,7 @@ else
         $appSetting.Attributes.Append($appSettingAttr2) | Out-Null
         $appSettingsSection.AppendChild($appSetting) | Out-Null
     }
-    $appSetting = $appSettingsSection.SelectSingleNode("add[key='apiKey']")
+    $appSetting = $appSettingsSection.SelectSingleNode("add[@key='apiKey']")
     if ($appSetting -eq $null)
     {
         $appSettingAttr1 = $xml.CreateAttribute("key")
@@ -73,7 +118,7 @@ else
         $appSetting.Attributes.Append($appSettingAttr2) | Out-Null
         $appSettingsSection.AppendChild($appSetting) | Out-Null
     }
-    $appSetting = $appSettingsSection.SelectSingleNode("add[key='packagesPath']")
+    $appSetting = $appSettingsSection.SelectSingleNode("add[@key='packagesPath']")
     if ($appSetting -eq $null)
     {
         $appSettingAttr1 = $xml.CreateAttribute("key")
@@ -85,7 +130,7 @@ else
         $appSetting.Attributes.Append($appSettingAttr2) | Out-Null
         $appSettingsSection.AppendChild($appSetting) | Out-Null
     }
-    $appSetting = $appSettingsSection.SelectSingleNode("add[key='allowOverrideExistingPackageOnPush']")
+    $appSetting = $appSettingsSection.SelectSingleNode("add[@key='allowOverrideExistingPackageOnPush']")
     if ($appSetting -eq $null)
     {
         $appSettingAttr1 = $xml.CreateAttribute("key")
@@ -97,7 +142,7 @@ else
         $appSetting.Attributes.Append($appSettingAttr2) | Out-Null
         $appSettingsSection.AppendChild($appSetting) | Out-Null
     }
-    $appSetting = $appSettingsSection.SelectSingleNode("add[key='enableDelisting']")
+    $appSetting = $appSettingsSection.SelectSingleNode("add[@key='enableDelisting']")
     if ($appSetting -eq $null)
     {
         $appSettingAttr1 = $xml.CreateAttribute("key")
@@ -109,7 +154,7 @@ else
         $appSetting.Attributes.Append($appSettingAttr2) | Out-Null
         $appSettingsSection.AppendChild($appSetting) | Out-Null
     }
-    $appSetting = $appSettingsSection.SelectSingleNode("add[key='enableFrameworkFiltering']")
+    $appSetting = $appSettingsSection.SelectSingleNode("add[@key='enableFrameworkFiltering']")
     if ($appSetting -eq $null)
     {
         $appSettingAttr1 = $xml.CreateAttribute("key")
@@ -128,7 +173,7 @@ else
 
     $modules = $webserver.modules
 
-    $module = $modules.SelectSingleNode("add[name='ErrorLog']")
+    $module = $modules.SelectSingleNode("add[@name='ErrorLog']")
     if ($module -eq $null)
     {
         $moduleAttr1 = $xml.CreateAttribute("name")
@@ -144,7 +189,7 @@ else
         $module.Attributes.Append($moduleAttr3) | Out-Null
         $modules.AppendChild($module) | Out-Null
     }
-    $module = $modules.SelectSingleNode("add[name='ErrorMail']")
+    $module = $modules.SelectSingleNode("add[@name='ErrorMail']")
     if ($module -eq $null)
     {
         $moduleAttr1 = $xml.CreateAttribute("name")
@@ -160,7 +205,7 @@ else
         $module.Attributes.Append($moduleAttr3) | Out-Null
         $modules.AppendChild($module) | Out-Null
     }
-    $module = $modules.SelectSingleNode("add[name='ErrorFilter']")
+    $module = $modules.SelectSingleNode("add[@name='ErrorFilter']")
     if ($module -eq $null)
     {
         $moduleAttr1 = $xml.CreateAttribute("name")
@@ -205,7 +250,7 @@ else
 
     $httpModules = $config.'system.web'.httpModules
 
-    $httpModule = $httpModules.SelectSingleNode("add[name='ErrorLog']")
+    $httpModule = $httpModules.SelectSingleNode("add[@name='ErrorLog']")
     if ($httpModule -eq $null)
     {
         $httpModuleAttr1 = $xml.CreateAttribute("name")
@@ -218,7 +263,7 @@ else
         $httpModule.Attributes.Append($httpModuleAttr2) | Out-Null
         $httpModules.AppendChild($httpModule) | Out-Null
     }
-    $httpModule = $modules.SelectSingleNode("add[name='ErrorMail']")
+    $httpModule = $modules.SelectSingleNode("add[@name='ErrorMail']")
     if ($httpModule -eq $null)
     {
         $httpModuleAttr1 = $xml.CreateAttribute("name")
@@ -231,7 +276,7 @@ else
         $httpModule.Attributes.Append($httpModuleAttr2) | Out-Null
         $httpModules.AppendChild($httpModule) | Out-Null
     }
-    $httpModule = $modules.SelectSingleNode("add[name='ErrorFilter']")
+    $httpModule = $modules.SelectSingleNode("add[@name='ErrorFilter']")
     if ($httpModule -eq $null)
     {
         $httpModuleAttr1 = $xml.CreateAttribute("name")
@@ -350,5 +395,5 @@ else
         $handler.Attributes.Append($handlerAttr4) | Out-Null
     }
 
-    Write-Host $location.OuterXml
+    $xml.Save($path)
 }
