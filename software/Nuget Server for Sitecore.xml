@@ -8,78 +8,23 @@
       <License />
       <Comment />
       <Attributes />
-      <Readme>    NuGet Server for Sitecore 1.0 rev. 150220
+      <Readme>    NuGet Server for Sitecore 1.0 rev. 150226
 -------------------------------------------------------------
-Date: 20-Feb-2015
+Date: 26-Feb-2015
 -------------------------------------------------------------
 This package installs a NuGet server on your Sitecore server.
 It allows NuGet packages to be configured using a Sitecore
 config file.
 
 -------------------------------------------------------------
-*** PRE-INSTALLATION STEPS ***
-Installation WILL FAIL if you do not follow these steps!
+Installation and configuration instructions are available at
+https://github.com/adamconn/sitecore-nuget-server
 
-Make the following changes to web.config:
- 
- 1. Add the following to configuration &gt; system.serviceModel
-
-&lt;serviceHostingEnvironment aspNetCompatibilityEnabled="true"/&gt;
-
--------------------------------------------------------------
-*** POST-INSTALLATION STEPS ***
-Installation WILL FAIL if you do not follow these steps!
-
-Make the following changes to web.config:
-
- 1. Add the following to configuration &gt; configSections
-    &lt;sectionGroup name="elmah"&gt;
-      &lt;section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah"/&gt;
-      &lt;section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah"/&gt;
-      &lt;section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah"/&gt;
-      &lt;section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah"/&gt;
-    &lt;/sectionGroup&gt;
-
-  2. Add the following to configuration &gt; appSettings
-    &lt;add key="requireApiKey" value="true"/&gt;
-    &lt;add key="apiKey" value=""/&gt;
-    &lt;add key="packagesPath" value=""/&gt;
-    &lt;add key="allowOverrideExistingPackageOnPush" value="true"/&gt;
-    &lt;add key="enableDelisting" value="false"/&gt;
-    &lt;add key="enableFrameworkFiltering" value="false"/&gt;
-
-  3. Add the following to configuration &gt; system.webServer &gt; modules
-      &lt;add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler"/&gt;
-      &lt;add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler"/&gt;
-      &lt;add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler"/&gt;
-
-  4. Add the following to configuration &gt; system.webServer
-    &lt;staticContent&gt;
-      &lt;mimeMap fileExtension=".nupkg" mimeType="application/zip"/&gt;
-    &lt;/staticContent&gt;
-
-  5. Add the following to configuration &gt; system.web &gt; httpModules
-      &lt;add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/&gt;
-      &lt;add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/&gt;
-      &lt;add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/&gt;
-
-  6. Add the following to configuration
-  &lt;elmah&gt;
-    &lt;security allowRemoteAccess="false"/&gt;
-    &lt;errorLog type="Elmah.XmlFileErrorLog, Elmah" logPath="~/App_Data"/&gt;
-  &lt;/elmah&gt;
-  &lt;location path="elmah.axd" inheritInChildApplications="false"&gt;
-    &lt;system.web&gt;
-      &lt;httpHandlers&gt;
-        &lt;add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah"/&gt;
-      &lt;/httpHandlers&gt;
-    &lt;/system.web&gt;
-    &lt;system.webServer&gt;
-      &lt;handlers&gt;
-        &lt;add name="ELMAH" verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" preCondition="integratedMode"/&gt;
-      &lt;/handlers&gt;
-    &lt;/system.webServer&gt;
-  &lt;/location&gt;
+*** NOTE ***
+Please read the installation instructions BEFORE installing
+this package. The installation WILL FAIL if you try to 
+install the package without making a change to web.config
+first.
 
 -------------------------------------------------------------
 NuGet Server for Sitecore 1.0 runs on:
