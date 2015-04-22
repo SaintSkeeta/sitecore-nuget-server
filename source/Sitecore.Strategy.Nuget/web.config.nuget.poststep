@@ -1,0 +1,51 @@
+﻿<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections xdt:Transform="InsertIfMissing">
+    <sectionGroup xdt:Transform="InsertIfMissing" name="elmah">
+      <section xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah"/>
+      <section xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah"/>
+      <section xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah"/>
+      <section xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah"/>
+    </sectionGroup>
+  </configSections>
+  <appSettings>
+    <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="requireApiKey" value="true"/>
+    <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="apiKey" value=""/>
+    <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="packagesPath" value=""/>
+    <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="allowOverrideExistingPackageOnPush" value="true"/>
+    <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="enableDelisting" value="false"/>
+    <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="enableFrameworkFiltering" value="false"/>
+  </appSettings>
+  <system.webServer>
+    <modules>
+      <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler"/>
+      <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler"/>
+      <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler"/>
+    </modules>
+    <staticContent xdt:Transform="InsertIfMissing">
+      <mimeMap xdt:Locator="Match(fileExtension)" xdt:Transform="InsertIfMissing" fileExtension=".nupkg" mimeType="application/zip"/>
+    </staticContent>
+  </system.webServer>
+  <system.web>
+    <httpModules>
+      <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/>
+      <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/>
+      <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/>
+    </httpModules>
+  </system.web>
+  <elmah xdt:Transform="InsertIfMissing">
+    <security xdt:Transform="InsertIfMissing" allowRemoteAccess="false"/>
+    <errorLog xdt:Transform="InsertIfMissing" type="Elmah.XmlFileErrorLog, Elmah" logPath="~/App_Data"/>
+  </elmah>
+  <location xdt:Locator="Match(path)" xdt:Transform="InsertIfMissing" path="elmah.axd" inheritInChildApplications="false">
+    <system.web xdt:Transform="InsertIfMissing">
+      <httpHandlers xdt:Transform="InsertIfMissing">
+        <add xdt:Locator="Match(path)" xdt:Transform="InsertIfMissing" verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah"/>
+      </httpHandlers>
+    </system.web>
+    <system.webServer xdt:Transform="InsertIfMissing">
+      <handlers xdt:Transform="InsertIfMissing">
+        <add xdt:Locator="Match(path)" xdt:Transform="InsertIfMissing" name="ELMAH" verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" preCondition="integratedMode"/>
+      </handlers>
+    </system.webServer>
+  </location>
+</configuration>

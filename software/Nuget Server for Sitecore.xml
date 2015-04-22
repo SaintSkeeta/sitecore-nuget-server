@@ -3,31 +3,100 @@
     <metadata>
       <PackageName>Nuget Server for Sitecore</PackageName>
       <Author>Adam Conn</Author>
-      <Version>1.0</Version>
+      <Version>1.1</Version>
       <Revision />
       <License />
       <Comment />
-      <Attributes />
-      <Readme>    NuGet Server for Sitecore 1.0 rev. 150226
+      <Attributes>source=web.config.nuget.poststep|target=web.config|</Attributes>
+      <Readme>    NuGet Server for Sitecore 1.1 rev. 150421
 -------------------------------------------------------------
-Date: 26-Feb-2015
+Date: 21-Apr-2015
 -------------------------------------------------------------
 This package installs a NuGet server on your Sitecore server.
 It allows NuGet packages to be configured using a Sitecore
 config file.
 
 -------------------------------------------------------------
-Installation and configuration instructions are available at
-https://github.com/adamconn/sitecore-nuget-server
+*** PRE-INSTALLATION STEPS ***
+Installation WILL FAIL if you do not follow these steps!
 
-*** NOTE ***
-Please read the installation instructions BEFORE installing
-this package. The installation WILL FAIL if you try to 
-install the package without making a change to web.config
-first.
+Make the following changes to web.config:
+ 
+ 1. Add the following to configuration &gt; system.serviceModel
+
+&lt;serviceHostingEnvironment aspNetCompatibilityEnabled="true"/&gt;
 
 -------------------------------------------------------------
-NuGet Server for Sitecore 1.0 runs on:
+*** POST-INSTALLATION STEPS  - AUTOMATIC ***
+The steps described in the POST-INSTALLATION 
+STEPS - MANUAL will be performed automatically 
+if you allow it. The installation wizard will prompt you 
+to allow changes to web.config. If you click OK you do 
+not need to complete the following steps.
+
+In order for the changes to be made automatically
+the identity running the ASP.NET application pool 
+for the Sitecore website must have write-access to 
+web.config. If the write-access is not granted the 
+installation WILL FAIL!
+
+-------------------------------------------------------------
+*** POST-INSTALLATION STEPS  - MANUAL ***
+If you do not allow the changes to be made automatically 
+you must make the following changes to web.config. 
+If you skip these steps the installation WILL FAIL!
+
+ 1. Add the following to configuration &gt; configSections
+    &lt;sectionGroup name="elmah"&gt;
+      &lt;section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah"/&gt;
+      &lt;section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah"/&gt;
+      &lt;section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah"/&gt;
+      &lt;section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah"/&gt;
+    &lt;/sectionGroup&gt;
+
+  2. Add the following to configuration &gt; appSettings
+    &lt;add key="requireApiKey" value="true"/&gt;
+    &lt;add key="apiKey" value=""/&gt;
+    &lt;add key="packagesPath" value=""/&gt;
+    &lt;add key="allowOverrideExistingPackageOnPush" value="true"/&gt;
+    &lt;add key="enableDelisting" value="false"/&gt;
+    &lt;add key="enableFrameworkFiltering" value="false"/&gt;
+
+  3. Add the following to configuration &gt; system.webServer &gt; modules
+      &lt;add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler"/&gt;
+      &lt;add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler"/&gt;
+      &lt;add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler"/&gt;
+
+  4. Add the following to configuration &gt; system.webServer
+    &lt;staticContent&gt;
+      &lt;mimeMap fileExtension=".nupkg" mimeType="application/zip"/&gt;
+    &lt;/staticContent&gt;
+
+  5. Add the following to configuration &gt; system.web &gt; httpModules
+      &lt;add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/&gt;
+      &lt;add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/&gt;
+      &lt;add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/&gt;
+
+  6. Add the following to configuration
+  &lt;elmah&gt;
+    &lt;security allowRemoteAccess="false"/&gt;
+    &lt;errorLog type="Elmah.XmlFileErrorLog, Elmah" logPath="~/App_Data"/&gt;
+  &lt;/elmah&gt;
+  &lt;location path="elmah.axd" inheritInChildApplications="false"&gt;
+    &lt;system.web&gt;
+      &lt;httpHandlers&gt;
+        &lt;add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah"/&gt;
+      &lt;/httpHandlers&gt;
+    &lt;/system.web&gt;
+    &lt;system.webServer&gt;
+      &lt;handlers&gt;
+        &lt;add name="ELMAH" verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" preCondition="integratedMode"/&gt;
+      &lt;/handlers&gt;
+    &lt;/system.webServer&gt;
+  &lt;/location&gt;
+
+-------------------------------------------------------------
+NuGet Server for Sitecore 1.1 runs on:
 -  Sitecore XP 8.0
 
 *** NOTE ***
@@ -36,7 +105,7 @@ the requirements for the NuGet.Server package. For more
 information see https://www.nuget.org/packages/NuGet.Server
 
 -------------------------------------------------------------
-NuGet Server for Sitecore 1.0 has been tested on:
+NuGet Server for Sitecore 1.1 has been tested on:
 -  Sitecore XP 8.0
 -------------------------------------------------------------
 Sitecore® is a registered trademark. All other brand and
@@ -45,7 +114,7 @@ The contents of this document are the property of Sitecore.
 Copyright © 2001-2015 Sitecore. All rights reserved.
 </Readme>
       <Publisher />
-      <PostStep />
+      <PostStep>Sitecore.Strategy.Packages.PostSteps.XdtTransformer, Sitecore.Strategy.Packages</PostStep>
       <PackageID />
     </metadata>
   </Metadata>
@@ -61,6 +130,7 @@ Copyright © 2001-2015 Sitecore. All rights reserved.
         <x-item>/bin/RouteMagic.dll</x-item>
         <x-item>/bin/WebActivatorEx.dll</x-item>
         <x-item>/bin/Sitecore.Strategy.Nuget.dll</x-item>
+        <x-item>/bin/Sitecore.Strategy.Packages.dll</x-item>
       </Entries>
       <Converter>
         <FileToEntryConverter>
@@ -84,6 +154,7 @@ Copyright © 2001-2015 Sitecore. All rights reserved.
     <xfiles>
       <Entries>
         <x-item>/App_Config/Include/Sitecore.Strategy.Nuget.config</x-item>
+        <x-item>/web.config.nuget.poststep</x-item>
       </Entries>
       <Converter>
         <FileToEntryConverter>
@@ -113,7 +184,16 @@ Copyright © 2001-2015 Sitecore. All rights reserved.
       <Converter>
         <FileToEntryConverter>
           <Root>/</Root>
-          <Transforms />
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
         </FileToEntryConverter>
       </Converter>
       <Include />
