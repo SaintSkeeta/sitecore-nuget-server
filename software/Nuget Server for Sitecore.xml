@@ -8,9 +8,9 @@
       <License />
       <Comment />
       <Attributes>source=web.config.nuget.poststep|target=web.config|</Attributes>
-      <Readme>    NuGet Server for Sitecore 1.1 rev. 150421
+      <Readme>    NuGet Server for Sitecore 1.1 rev. 150626
 -------------------------------------------------------------
-Date: 21-Apr-2015
+Date: 26-Jun-2015
 -------------------------------------------------------------
 This package installs a NuGet server on your Sitecore server.
 It allows NuGet packages to be configured using a Sitecore
