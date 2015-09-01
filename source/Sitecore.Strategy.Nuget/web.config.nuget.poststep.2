@@ -7,7 +7,7 @@
       <section xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah"/>
     </sectionGroup>
   </configSections>
-  <appSettings>
+  <appSettings xdt:Transform="InsertIfMissing" >
     <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="requireApiKey" value="true"/>
     <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="apiKey" value=""/>
     <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="packagesPath" value=""/>
@@ -15,8 +15,8 @@
     <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="enableDelisting" value="false"/>
     <add xdt:Locator="Match(key)" xdt:Transform="InsertIfMissing" key="enableFrameworkFiltering" value="false"/>
   </appSettings>
-  <system.webServer>
-    <modules>
+  <system.webServer xdt:Transform="InsertIfMissing" >
+    <modules xdt:Transform="InsertIfMissing">
       <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler"/>
       <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler"/>
       <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler"/>
@@ -25,8 +25,8 @@
       <mimeMap xdt:Locator="Match(fileExtension)" xdt:Transform="InsertIfMissing" fileExtension=".nupkg" mimeType="application/zip"/>
     </staticContent>
   </system.webServer>
-  <system.web>
-    <httpModules>
+  <system.web xdt:Transform="InsertIfMissing" >
+    <httpModules xdt:Transform="InsertIfMissing" >
       <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/>
       <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/>
       <add xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/>

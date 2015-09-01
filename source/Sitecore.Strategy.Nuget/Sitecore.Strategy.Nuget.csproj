@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,7 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="web.config.nuget.poststep" />
     <Compile Include="Configuration\IDependencyDescriptor.cs" />
     <Compile Include="Configuration\INugetConfiguration.cs" />
     <Compile Include="Configuration\IPackageDescriptor.cs" />
@@ -107,6 +107,8 @@
     <Compile Include="Configuration\PackageDescriptor.cs" />
     <Compile Include="Pipelines\Initialize\GeneratePackages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="web.config.nuget.poststep.1" />
+    <Content Include="web.config.nuget.poststep.2" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Sitecore.Strategy.Nuget.config">

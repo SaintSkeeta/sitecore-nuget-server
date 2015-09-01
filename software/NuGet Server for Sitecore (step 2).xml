@@ -1,16 +1,16 @@
 <project>
   <Metadata>
     <metadata>
-      <PackageName>Nuget Server for Sitecore</PackageName>
+      <PackageName>Nuget Server for Sitecore - step 2</PackageName>
       <Author>Adam Conn</Author>
       <Version>1.1</Version>
       <Revision />
       <License />
       <Comment />
-      <Attributes>source=web.config.nuget.poststep|target=web.config|</Attributes>
-      <Readme>    NuGet Server for Sitecore 1.1 rev. 150626
+      <Attributes>source=web.config.nuget.poststep.2|target=web.config|</Attributes>
+      <Readme>    NuGet Server for Sitecore 1.1 rev. 150901 (step 2)
 -------------------------------------------------------------
-Date: 26-Jun-2015
+Date: 01-Sept-2015
 -------------------------------------------------------------
 This package installs a NuGet server on your Sitecore server.
 It allows NuGet packages to be configured using a Sitecore
@@ -18,13 +18,9 @@ config file.
 
 -------------------------------------------------------------
 *** PRE-INSTALLATION STEPS ***
-Installation WILL FAIL if you do not follow these steps!
+Install the package NuGet Server for Sitecore 1.1 (step 1).
 
-Make the following changes to web.config:
- 
- 1. Add the following to configuration &gt; system.serviceModel
-
-&lt;serviceHostingEnvironment aspNetCompatibilityEnabled="true"/&gt;
+Installation WILL FAIL if this package is not installed!
 
 -------------------------------------------------------------
 *** POST-INSTALLATION STEPS  - AUTOMATIC ***
@@ -98,6 +94,7 @@ If you skip these steps the installation WILL FAIL!
 -------------------------------------------------------------
 NuGet Server for Sitecore 1.1 runs on:
 -  Sitecore XP 8.0
+-  Sitecore XP 8.1
 
 *** NOTE ***
 This module should run on any version of Sitecore that meets 
@@ -107,6 +104,7 @@ information see https://www.nuget.org/packages/NuGet.Server
 -------------------------------------------------------------
 NuGet Server for Sitecore 1.1 has been tested on:
 -  Sitecore XP 8.0
+-  Sitecore XP 8.1
 -------------------------------------------------------------
 Sitecore® is a registered trademark. All other brand and
 product names are the property of their respective holders.
@@ -154,7 +152,7 @@ Copyright © 2001-2015 Sitecore. All rights reserved.
     <xfiles>
       <Entries>
         <x-item>/App_Config/Include/Sitecore.Strategy.Nuget.config</x-item>
-        <x-item>/web.config.nuget.poststep</x-item>
+        <x-item>/web.config.nuget.poststep.2</x-item>
       </Entries>
       <Converter>
         <FileToEntryConverter>
