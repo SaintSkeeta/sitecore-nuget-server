@@ -10,18 +10,10 @@ Sitecore module that adds a NuGet server to your Sitecore server. It also dynami
 ### <a name="demo">Demo video</a>
 [This video](https://www.youtube.com/watch?v=vgehATYyvYw) shows how to configure Visual Studio to use NuGet Server for Sitecore and how to add references to NuGet packages hosted on NuGet Server for Sitecore.
 
-### <a name="installation-scripted">Installation instructions (scripted)</a>
-These instructions use a PowerShell script to modify `web.config`. If you don't feel comfortable letting a script modify this file you should follow the [manual installation instructions](#installation-manual).
+### <a name="installation-scripted">Installation instructions (automated)</a>
+**Step 1.** Install the [step 1 package](https://github.com/adamconn/sitecore-nuget-server/tree/master/software). When prompted to modify web.config, click OK.
 
-*NOTE: While these scripts have been tested and work just fine, they may be some of the ugliest PowerShell scripts ever written.*
-
-**Step 1.** Run the [before package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/NuGet%20Server%20for%20Sitecore%20-%20before%20package.ps1) PowerShell script
-
-**Step 2.** Install the [Sitecore installation package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/NuGet%20Server%20for%20Sitecore-1.1%20rev.%20150421.zip)
-
-> Starting with version 1.1 the post-installation steps do not need to be run if you allow the installation wizard to update web.config. If you do not allow this then you must continue to the next step. Otherwise your installation is complete.
-
-**Step 3.** Run the [after package](https://github.com/adamconn/sitecore-nuget-server/raw/master/software/NuGet%20Server%20for%20Sitecore%20-%20after%20package.ps1) PowerShell script
+**Step 2.** Install the [step 2 package](https://github.com/adamconn/sitecore-nuget-server/tree/master/software). When prompted to modify web.config, click OK.
 
 ### <a name="installation-manual">Installation instructions (manual)</a>
 **Step 1.** Add the following to `configuration > system.serviceModel` 
