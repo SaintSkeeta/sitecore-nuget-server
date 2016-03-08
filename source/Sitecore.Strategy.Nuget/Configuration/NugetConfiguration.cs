@@ -35,8 +35,13 @@ namespace Sitecore.Strategy.Nuget.Configuration
             var metadata = new ManifestMetadata()
             {
                 Id = descriptor.Id,
+                Title = descriptor.Title,
+                Tags = descriptor.Tags,
                 Authors = descriptor.Authors,
+                Owners = descriptor.Owners,
                 Description = descriptor.Description,
+                RequireLicenseAcceptance = false,
+                IconUrl = "http://www.sitecore.net/favicon.ico",
                 Version = descriptor.Version
             };
             //

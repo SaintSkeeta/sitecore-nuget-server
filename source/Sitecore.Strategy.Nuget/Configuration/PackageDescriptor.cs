@@ -17,8 +17,11 @@ namespace Sitecore.Strategy.Nuget.Configuration
             this.Dependencies = new List<PackageDependency>();
         }
         public string Id { get; private set; }
+        public string Title { get; set; }
         public string Version { get; set; }
+        public string Tags { get; set; }
         public string Authors { get; set; }
+        public string Owners { get; set; }
         public string Description { get; set; }
         public IList<string> Assemblies { get; private set; }
         public IList<PackageDependency> Dependencies { get; private set; }
